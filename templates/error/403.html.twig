@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}403 Forbidden{% endblock %}
+
+{% block body %}
+    <div class="container h-100">
+        <div class="row h-100 justify-content-center align-items-center">
+            <div class="col-md-6 text-center">
+                <h1 class="text-danger">403 Forbidden</h1>
+                <p>You don't have permission to access this page.</p>
+                <p><a href="{{ path('home') }}">Back to Home</a></p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<br><br> <br><br>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="card-title text-center mb-4">Edit Categorie</h1>
+
+                        {{ form_start(form) }}
+                        <div class="text-center">
+                            {{ form_widget(form) }}
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-block mt-3">Save changes</button>
+                        {{ form_end(form) }}
+
+                        <a href="{{ path('categories') }}" class="btn btn-secondary btn-block mt-3">Back to list</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

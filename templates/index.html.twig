@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<br><br> <br><br>
+
+    <div class="container mt-5" style="margin-top: 30px;">
+        <h1>Articles</h1>
+
+        <form action="{{ path('home') }}" method="get" class="mb-3">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control" placeholder="Search by article name">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-outline-secondary">Search</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="row">
+            {% for article in pagination %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="{{ asset('uploads/articles/' ~ article.image) }}" class="card-img-top" alt="Article Image" style="height: 200px;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ article.Libelle }}</h5>
+
+                            <p class="card-text">
+                                <strong>Is Disponible:</strong> {{ article.isDisponible ? 'Yes' : 'No' }}<br>
+                                <strong>Price:</strong> ${{ article.price }}
+                            </p>
+
+                            <a href="{{ path('Article', {'id': article.id}) }}" class="btn btn-primary">Read more</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="d-flex justify-content-center mt-3">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,41 @@
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="mb-4">Article Details</h1>
+
+        <div class="card">
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-3">Id:</dt>
+                    <dd class="col-sm-9">{{ article.id }}</dd>
+
+                    <dt class="col-sm-3">Libelle:</dt>
+                    <dd class="col-sm-9">{{ article.Libelle }}</dd>
+
+                    <dt class="col-sm-3">Is Disponible:</dt>
+                    <dd class="col-sm-9">{{ article.isDisponible ? 'Yes' : 'No' }}</dd>
+
+                    <dt class="col-sm-3">Price:</dt>
+                    <dd class="col-sm-9">{{ article.price }}</dd>
+
+                    <dt class="col-sm-3">Marque:</dt>
+                    <dd class="col-sm-9">{{ article.marque }}</dd>
+
+                    <dt class="col-sm-3">Image:</dt>
+                    <dd class="col-sm-9">
+                        <div class="rounded-circle overflow-hidden" style="width: 150px; height: 150px; border: 2px solid #ccc; margin: 0 auto;">
+                            <img src="{{ asset('uploads/articles/' ~ article.image) }}" alt="Article Image" class="img-fluid rounded-circle">
+                        </div>
+                    </dd>
+
+                    <dt class="col-sm-3">Category:</dt>
+                    <dd class="col-sm-9">{{ article.categorieId.nomCategorie }}</dd>
+                </dl>
+
+                <a href="{{ path('home') }}" class="btn btn-secondary">Back</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

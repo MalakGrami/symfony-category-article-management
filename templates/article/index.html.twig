@@ -1,0 +1,65 @@
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <br><br> <br><br>
+    <div class="container mt-5" >
+        <h1>Articles</h1>
+
+        <form action="{{ path('articles') }}" method="get" class="mb-3">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control" placeholder="Search by article name">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-outline-secondary">Search</button>
+                </div>
+            </div>
+        </form>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Libelle</th>
+                    <th>Is Disponible</th>
+                    <th>Price</th>
+                    <th>Marque</th>
+                    <th>Image</th>
+                    <th>Category</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for article in articles %}
+                    <tr>
+                        <td>{{ article.id }}</td>
+                        <td>{{ article.Libelle }}</td>
+                        <td>{{ article.isDisponible ? 'Yes' : 'No' }}</td>
+                        <td>{{ article.price }}</td>
+                        <td>{{ article.marque }}</td>
+                        <td>
+                            <img src="{{ asset('uploads/articles/' ~ article.image) }}" alt="Article Image" width="50" height="50">
+                        </td>
+                        <td>{{ article.categorieId.nomCategorie }}</td>
+                        <td>
+                            <a href="{{ path('articles_show', {'id': article.id}) }}" class="btn btn-info btn-sm">Show</a>
+                            <a href="{{ path('articles_update', {'id': article.id}) }}" class="btn btn-primary btn-sm">Edit</a>
+                            <a href="{{ path('articles_delete', {'id': article.id}) }}" class="btn btn-danger btn-sm"
+                               onclick="return confirm('Are you sure to delete {{ article.Libelle }}?')">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="d-flex justify-content-between mt-3">
+            <div>
+                {{ knp_pagination_render(articles) }}
+            </div>
+            <div>
+                <a href="{{ path('article_new') }}" class="btn btn-success">Create new</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
